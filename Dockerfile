@@ -27,6 +27,7 @@ RUN apt update && \
 # MongoDB Driver for Php7 (as soon as possible)
 # RUN apt-get install -y  php7.0-mongodb
 ############################
+
 ###########################################
 # Add Apache2 config file
 ADD OSfile/etc/apache2/apache2.conf /etc/apache2/apache2.conf
@@ -35,8 +36,11 @@ ADD OSfile/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-avail
 # Web Folder
 WORKDIR /var/www
 
-# Permission
-#RUN chown 777 -R /etc/apache2
+# Give an example
+RUN cd /var/www && \
+	rm -rf /var/www/* && \
+	apt-get -y install git && \
+	git clone https://github.com/dekatruong/PhalconSkeletonWithPhalconBoot.git .
 
 # Mount
 #  (can edit config in runtime)
